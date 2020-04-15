@@ -13,15 +13,25 @@ class App extends Component {
     ],
   }
 
-  handleSwitchName = () => {
+  handleSwitchName = (newName) => {
     // this.state.persons[0].name = "Dhoshya"
     // This is the wrong way, use setState()
     this.setState({
       persons: [
+        { name: newName, age: 53},
         { name:"Dhoshya", age: 25},
         { name: "Chris", age: 48}
       ],
     })
+  };
+
+  handleChange = (event) => {
+    this.setState({
+      persons: [
+        { name:"Dhoshya", age: 25},
+        { name: event.target.value, age: 48}
+      ],
+    });
   };
 
   render() {
@@ -34,14 +44,16 @@ class App extends Component {
         <p className="App-intro">
           This is really  working.
         </p>
-        <button onClick={this.handleSwitchName}>Switch Name</button>
+        <button onClick={this.handleSwitchName.bind(this, 'Chandra')}>Switch Name</button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
         />
         <Person
           name={this.state.persons[1].name}
-          age={this.state.persons[1].age}>
+          age={this.state.persons[1].age}
+          click={this.handleSwitchName.bind(this, 'Dass')}
+          changed={this.handleChange}>
           My Hobbies: Racing
         </Person>
       </div>
