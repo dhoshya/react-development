@@ -58,7 +58,7 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "red",
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -80,7 +80,18 @@ class App extends Component {
         })}
         </div>
       );
+      style.backgroundColor = "green"
     }
+
+    let classes = [];
+
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <=1) {
+      classes.push('bold');
+    }
+
 
     return (
       <div className="App">
@@ -88,7 +99,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
+        <p className={classes.join(' ')}>
           This is really  working.
         </p>
         <button
