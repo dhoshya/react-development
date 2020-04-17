@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
 import logo from './logo.svg';
 import './App.css';
 import './Person/Person.css'
+
+const StyledButton = styled.button`
+  background-color: ${ props => props.alt ? 'red' : 'green'};
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${ props => props.alt ? 'salmon' : 'lightgreen'};
+    color: black;
+  }
+  `;
 
 class App extends Component {
   // state is managed from inside of the component
@@ -58,17 +71,6 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "red",
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
 
     let persons = null;
     if (this.state.showPersons) {
@@ -85,11 +87,6 @@ class App extends Component {
         })}
         </div>
       );
-
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black',
-      }
     }
 
     let classes = [];
@@ -103,24 +100,22 @@ class App extends Component {
 
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          <p className={classes.join(' ')}>
-            This is really  working.
-          </p>
-          <button
-            style={style}
-            onClick={this.togglePersonHandler}>Toggle Person
-          </button>
-          {persons}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <p className={classes.join(' ')}>
+          This is really  working.
+        </p>
+        <StyledButton
+          alt={this.state.showPersons}
+          onClick={this.togglePersonHandler}>Toggle Person
+        </StyledButton>
+        {persons}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;

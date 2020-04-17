@@ -8,7 +8,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "react-toolbox": "^2.0.0-beta.13"
+    "react-toolbox": "^2.0.0-beta.13",
+    "styled-components": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
